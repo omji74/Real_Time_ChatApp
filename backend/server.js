@@ -4,6 +4,7 @@ const app  =express();
 
 import dotenv from 'dotenv'
 import authRoutes from './routes/auth.routes.js'
+import messageRoutes from './routes/message.routes.js'
 import connectToMongoDB from './db/connectToMongoDB.js';
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/auth',authRoutes);
+app.use('/api/messages',messageRoutes);
 
 
 app.listen(PORT,()=>{
