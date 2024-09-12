@@ -1,12 +1,15 @@
-import { Error } from "mongoose";
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+// import protectRoute from "../middleware/protectRoute.js";
 
 export const sendMessage = async (req,res)=>{
     try{
         const {message} = req.body;
-        const {_id: receiverId} = req.params;
-        const senderId = req.user_id;
+		console.log(req.body);
+        const {id: receiverId} = req.params;
+		
+        const senderId = req.user._id;
+		console.log(senderId)
 
 		let conversation = await Conversation.findOne({
 			participants: { $all: [senderId, receiverId] },
@@ -28,6 +31,8 @@ export const sendMessage = async (req,res)=>{
 			conversation.messages.push(newMessage._id);
 		}
         res.status(201).json(newMessage);
+
+		await Promise.all([conversation.save(), newMessage.save()]);
     }
     catch(err){
 
@@ -36,6 +41,31 @@ export const sendMessage = async (req,res)=>{
         res.status(500).json({err:"Internal Server Error"})
     }
 
+
+}
+export const getMessage  = async (req,res)=>{
+	try{
+		const {id:userToChatId} = req.params;
+		const senderId = req.user._id;
+		const conversation = await Conversation.findOne({
+			participants: { $all: [senderId, userToChatId] },
+		}).populate("messages"); // NOT REFERENCE BUT ACTUAL MESSAGES
+
+		if (!conversation) return res.status(200).json([]);
+
+		const messages = conversation.messages;
+
+		res.status(200).json(messages);
+ 
+	}
+	catch(err){
+
+        console.log("Error message from getmessagecontroller",err.message);
+
+        res.status(500).json({err:"Internal Server Error"})
+    }
+
+	
 }
 
 
