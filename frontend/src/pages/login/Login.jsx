@@ -26,7 +26,7 @@ const Login = () => {
 							className='w-full input input-bordered h-10'
 						/>
 					</div>
-					<a href='#' className='text-sm  hover:underline hover:text-blue-600 mt-2 inline-block'>
+					<a href='SignUp' className='text-sm  hover:underline hover:text-blue-600 mt-2 inline-block'>
 						{"Don't"} have an account?
 					</a>
 
