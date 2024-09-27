@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckbox";
 import { useState } from "react";
@@ -39,7 +38,7 @@ const SignUp = () => {
 						<input
 							type='text'
 							placeholder='John Doe'
-							className='w-full input input-bordered h-10'
+							className='w-full input input-bordered  h-10'
 							value={inputs.fullName}
 							onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
 						/>
@@ -84,14 +83,12 @@ const SignUp = () => {
 						/>
 					</div>
 
-					<GenderCheckbox
-						onCheckboxChange={handleCheckboxChange}
-						selectedGender={inputs.gender}
-					/>
+					<GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
 
 					<Link
 						to={"/login"}
 						className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
+						href='#'
 					>
 						Already have an account?
 					</Link>
@@ -106,5 +103,4 @@ const SignUp = () => {
 		</div>
 	);
 };
-
 export default SignUp;
