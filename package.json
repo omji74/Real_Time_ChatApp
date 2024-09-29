@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon backend/server.js",
-    "start":"npm backend/server.js",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "start": "npm backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "type": "module",
   "author": "\"omji\"",
@@ -19,6 +19,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.1",
+    "path": "^0.12.7",
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
